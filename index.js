@@ -10,12 +10,12 @@ dotenv.config({});
 const app = express();
 app.get("/home",(req,res)=>{
     res.status(200).json({
-        message:"i am comming from backend",
+        message:"i am comming from great backend",
         success:true
     })
 })
 
-// middleware
+// middlewareback
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
