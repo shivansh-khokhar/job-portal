@@ -15,7 +15,7 @@ app.get("/home",(req,res)=>{
     })
 })
 
-// middleware
+// middlewares
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
