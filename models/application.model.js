@@ -16,5 +16,5 @@ const applicationSchema = new mongoose.Schema({
         default:'pending'
     },
 
-},{timestamps:true});
+},{timeseries:true});
 export const Application = mongoose.model("Application",applicationSchema);
