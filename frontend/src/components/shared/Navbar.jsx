@@ -1,6 +1,5 @@
 import React from "react";
 // import { Link } from "react-router-dom";
-
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import {  Avatar, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
@@ -21,6 +20,7 @@ const Navbar = () => {
             <li> Jobs </li>
             <li>Browse</li>
           </ul>
+          
           <Popover>
             <PopoverTrigger asChild>
             <Avatar className="cursor-pointer">
