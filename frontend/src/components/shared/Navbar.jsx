@@ -1,7 +1,7 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import {  Avatar, AvatarImage } from "../ui/avatar";
+import { Avatar, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { LogOut, User2 } from "lucide-react";
 
@@ -16,23 +16,35 @@ const Navbar = () => {
         </div>
         <div className="flex item-center gap-12">
           <ul className="flex font-medium items-center gap-5">
-            <li>Home</li>
-            <li> Jobs </li>
-            <li>Browse</li>
+            <li>
+              <Link to={"/"}>Home</Link>
+            </li>
+            <li>
+              <Link to={"/jobs"}>Jobs</Link>{" "}
+            </li>
+            <li>
+              <Link to={"/browse"}>Browse</Link>
+            </li>
           </ul>
-          
+
           <Popover>
             <PopoverTrigger asChild>
-            <Avatar className="cursor-pointer">
-            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />   
-            </Avatar>
+              <Avatar className="cursor-pointer">
+                <AvatarImage
+                  src="https://github.com/shadcn.png"
+                  alt="@shadcn"
+                />
+              </Avatar>
             </PopoverTrigger>
 
             <PopoverContent className="w-80">
               <div className="flex gap-4 space-y-2">
-                <Avatar className="cursor-pointer"> 
-                  <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />      
-                 </Avatar> 
+                <Avatar className="cursor-pointer">
+                  <AvatarImage
+                    src="https://github.com/shadcn.png"
+                    alt="@shadcn"
+                  />
+                </Avatar>
                 <div>
                   <h4 className="font-medium">
                     aditya the great mern stack developer
@@ -44,11 +56,11 @@ const Navbar = () => {
               </div>
               <div className="flex flex-col my-2 text-gray-600">
                 <div className="flex w-fit items-center gap-2 cursor-pointer">
-                <User2/>
+                  <User2 />
                   <Button variant="link">View profile</Button>
                 </div>
                 <div className="flex w-fit items-center gap-2 cursor-pointer">
-                <LogOut/>
+                  <LogOut />
                   <Button variant="link">Logout</Button>
                 </div>
               </div>
@@ -57,7 +69,7 @@ const Navbar = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Navbar;
