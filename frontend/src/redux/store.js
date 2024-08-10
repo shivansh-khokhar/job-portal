@@ -11,16 +11,17 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import jobSlice from "./jobSlice";
 
 const persistConfig = {
   key: "root",
   version: 1,
   storage,
 };
-const rootReducer = combineReducers ({
-    auth:authSlice,
-
-})
+const rootReducer = combineReducers({
+  auth: authSlice,
+  job: jobSlice,
+});
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
