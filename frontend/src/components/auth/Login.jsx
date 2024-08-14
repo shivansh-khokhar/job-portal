@@ -10,7 +10,7 @@ import { USER_API_END_POINT } from "@/utils/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoading, setUser } from "@/redux/authSlice";
 import { Loader2 } from "lucide-react";
-import Navbar from "../shared/Navbar";
+import Navbar from "./shared/Navbar";
 
 const Login = () => {
   const [input, setInput] = useState({
@@ -125,7 +125,7 @@ const Login = () => {
             Don't have an account?{" "}
             <Link to="/signup" className="text-blue-600">
               Signup
-            </Link>{" "}
+            </Link>{""}
           </span>
         </form>
       </div>

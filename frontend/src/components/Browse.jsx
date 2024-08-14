@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./shared/Navbar";
+import Navbar from "./auth/shared/Navbar";
 import Job from "./Job";
 
 const randomJobs = [1,2,3];
