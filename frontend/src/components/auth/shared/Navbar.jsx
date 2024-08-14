@@ -12,6 +12,7 @@ import { toast } from "sonner";
 import { setUser } from "@/redux/authSlice";
 
 const Navbar = () => {
+<<<<<<< HEAD:frontend/src/components/auth/shared/Navbar.jsx
   const {user} = useSelector(store=>store.auth);
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -28,6 +29,9 @@ const Navbar = () => {
       toast.error(error.response.data.message);
     }
   }
+=======
+  const { user } = useSelector((store) => store.auth);
+>>>>>>> 151f8df262e56102da5615aa5db3546214ccef30:frontend/src/components/shared/Navbar.jsx
   return (
     <div className="bg-white">
       <div className="flex item-center justify-between mx-auto max-w-7xl h-16">
@@ -38,20 +42,37 @@ const Navbar = () => {
         </div>
         <div className="flex item-center gap-12">
           <ul className="flex font-medium items-center gap-5">
-            <li>
-              <Link to={"/"}>Home</Link>
-            </li>
-            <li>
-              <Link to={"/jobs"}>Jobs</Link>{" "}
-            </li>
-            <li>
-              <Link to={"/browse"}>Browse</Link>
-            </li>
+            {user && user.role === "recruiter" ? (
+              <>
+                <li>
+                  <Link to="/admin/companies">Companies</Link>
+                </li>
+                <li>
+                  <Link to="/admin/jobs">Jobs</Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/jobs">Jobs</Link>
+                </li>
+                <li>
+                  <Link to="/browse">Browse</Link>
+                </li>
+              </>
+            )}
           </ul>
           {!user ? (
             <div className="flex items-center gap-2 ">
-              <Button variant="outline"><Link to={"/login"}>Login</Link> </Button>
-              <Button className="bg-[#6A38C2] hover:bg-[#5b30a6]"><Link to={"/signup"}>Signup</Link> </Button>
+              <Button variant="outline">
+                <Link to={"/login"}>Login</Link>{" "}
+              </Button>
+              <Button className="bg-[#6A38C2] hover:bg-[#5b30a6]">
+                <Link to={"/signup"}>Signup</Link>{" "}
+              </Button>
             </div>
           ) : (
             <Popover>
@@ -82,10 +103,20 @@ const Navbar = () => {
                   </div>
                 </div>
                 <div className="flex flex-col my-2 text-gray-600">
+<<<<<<< HEAD:frontend/src/components/auth/shared/Navbar.jsx
                   <div className="flex w-fit items-center gap-2 cursor-pointer">
                     <User2 />
                     <Button variant="link"><Link to="/profile">View profile</Link></Button>
                   </div>
+=======
+                  {user && user.role === "student" && (
+                    <div className="flex w-fit items-center gap-2 cursor-pointer">
+                      <User2 />
+                      <Button variant="link">View profile</Button>
+                    </div>
+                  )}
+
+>>>>>>> 151f8df262e56102da5615aa5db3546214ccef30:frontend/src/components/shared/Navbar.jsx
                   <div className="flex w-fit items-center gap-2 cursor-pointer">
                     <LogOut />
                     <Button onClick={loggoutHandler} variant="link">Logout</Button>
