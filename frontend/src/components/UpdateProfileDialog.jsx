@@ -11,22 +11,22 @@ import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Loader2 } from "lucide-react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { USER_API_END_POINT } from "@/utils/constant";
-import { useDispatch } from "react-redux";
 import { toast } from "sonner";
 import axios from "axios";
+import { setUser } from "@/redux/authSlice";
 
 const UpdateProfileDialog = ({ open, setOpen }) => {
   const [loading, setLoading] = useState(false);
-  const { user } = useSelector(store => store.auth);
+  const { user } = useSelector((store) => store.auth);
 
   const [input, setInput] = useState({
     fullname: user?.fullname || "",
     email: user?.email || "",
-    phoneNumber: user?.phoneNumber || "",
+    phoneNumber: user?.phoneNumber ,
     bio: user?.profile?.bio || "",
-    skills: user?.profile?.skills?.map(skill=>skill) || "",
+    skills: user?.profile?.skills?.map((skill) => skill) || "",
     file: user?.profile?.resume || "",
   });
   const dispatch = useDispatch();
@@ -37,9 +37,10 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
   const fileChangeHandler = (e) => {
     const file = e.target.files?.[0];
     setInput({ ...input, file });
-  }
+  };
 
   const submitHandler = async (e) => {
+    
     e.preventDefault();
     const formData = new FormData();
     formData.append("fullname", input.fullname);
@@ -64,21 +65,17 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
       );
       if (res.data.success) {
         dispatch(setUser(res.data.user));
-        toast.success(res.data.message)
+        toast.success(res.data.message);
       }
-
     } catch (err) {
-      console.log(err)
-      toast.error(err.response.data.message)
-    }
-    finally {
-      setLoading(false)
+      console.log(err);
+      toast.error(err.response.data.message);
+    } finally {
+      setLoading(false);
     }
     setOpen(false);
     console.log(input);
   };
-
-  
 
   return (
     <div>
@@ -89,7 +86,6 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
         >
           <DialogHeader>
             <DialogTitle>Update Profile</DialogTitle>
-            
           </DialogHeader>
           <form onSubmit={submitHandler}>
             <div className="grid gap-4 py-4">
@@ -99,7 +95,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                 </Label>
                 <Input
                   id="name"
-                  name="name"
+                  name="fullname"
                   type="text"
                   value={input.fullname}
                   onChange={changeEventHandler}
@@ -125,7 +121,8 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                 </Label>
                 <Input
                   id="number"
-                  name="number"
+                  name="phoneNumber"
+                  // type="tel"
                   value={input.phoneNumber}
                   onChange={changeEventHandler}
                   className="col-span-3"

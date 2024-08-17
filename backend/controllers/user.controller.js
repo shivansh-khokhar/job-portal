@@ -143,7 +143,7 @@ export const updateProfile = async (req,res)=>{
         skillsArray = skills.split(",")
       }
     const userId = req.id; // middleware authentication (*)
-    let user = await user.findById(userId);
+    let user = await User.findById(userId);
 
     if(!user){
         return res.status(400).json({
@@ -152,11 +152,11 @@ export const updateProfile = async (req,res)=>{
         })
     }
     // update data
-    if(fullname) user.fullname = fullname
-    if(email) user.email = email
-    if(phoneNumber) user.phoneNumber = phoneNumber
-    if(bio) user.profile.bio = bio
-    if(skills) user.profile.skills = skillsArray
+    if(fullname) user.fullname = fullname;
+    if(email) user.email = email;
+    if(phoneNumber) user.phoneNumber = phoneNumber;
+    if(bio) user.profile.bio = bio;
+    if(skills) user.profile.skills = skillsArray;
     // resume field should be implemented afterwards..(cloudinary)
 
     if(cloudResponse){
