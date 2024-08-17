@@ -10,32 +10,32 @@ import JobDescription from "./components/JobDescription"
 import Applicants from "./components/admin/Applicants"
 const appRouter = createBrowserRouter([
   {
-    path:'/',
-    element:<Home/>
+    path: "/",
+    element: <Home />,
   },
   {
-    path:'/login',
-    element:<Login/>
+    path: "/login",
+    element: <Login />,
   },
   {
-    path:'/signup',
-    element:<Signup/>
+    path: "/signup",
+    element: <Signup />,
   },
   {
-    path:'/jobs',
-    element:<Jobs />
+    path: "/jobs",
+    element: <Jobs />,
   },
   {
-    path:"/description/:id",
-    element:<JobDescription/>
+    path: "/description/:id",
+    element: <JobDescription />,
   },
   {
-    path:'/browse',
-    element:<Browse/>
+    path: "/browse",
+    element: <Browse />,
   },
   {
-    path:'/profile',
-    element:<Profile/>
+    path: "/profile",
+    element: <Profile />,
   },
 
   //admin ke liye yhase start hoga
@@ -52,13 +52,11 @@ const appRouter = createBrowserRouter([
 
 ])
 function App() {
-
-
   return (
     <>
-      <RouterProvider router = {appRouter}/>
+      <RouterProvider router={appRouter} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
