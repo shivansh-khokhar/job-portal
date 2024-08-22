@@ -11,7 +11,8 @@ import useGetAllJobs from '@/hooks/useGetAllJobs';
 const Home = () => {
   useGetAllJobs();
   const { user } = useSelector((store) => store.auth);
-  const navigate = useNavigate;
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (user?.role === "recruiter") {
       navigate("/admin/companies");
