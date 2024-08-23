@@ -27,7 +27,7 @@ const PostJob = () => {
     requirements: "",
     salary: "",
     location: "",
-    jobType: "",
+    jobtype: "",
     experience: "",
     position: 0,
     companyId: "",
@@ -35,7 +35,7 @@ const PostJob = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const { companies } = useSelector((store) => store.company);
+  const { companies } = useSelector(store => store.company);
   const changeEventHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
@@ -131,8 +131,8 @@ const PostJob = () => {
               <Label>Job Type</Label>
               <Input
                 type="text"
-                name="jobType"
-                value={input.jobType}
+                name="jobtype"
+                value={input.jobtype}
                 onChange={changeEventHandler}
                 className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
               />
@@ -166,7 +166,7 @@ const PostJob = () => {
                   <SelectGroup>
                     {companies.map((company) => {
                       return (
-                        <SelectItem value={company?.name?.toLowerCase()}>
+                        <SelectItem value={company?.name?.toLowerCase()} key={company._id}>
                           {company.name}
                         </SelectItem>
                       );

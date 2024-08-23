@@ -12,7 +12,7 @@ import CompanySetup from "./components/admin/CompanySetup"
 import Companies from "./components/admin/Companies"
 import CompanyCreate from "./components/admin/CompanyCreate"
 import AdminJobs from "./components/admin/AdminJobs"
-import PostJobs from "./components/admin/PostJobs"
+import PostJobs from "./components/admin/PostJob"
 const appRouter = createBrowserRouter([
   {
     path: "/",
