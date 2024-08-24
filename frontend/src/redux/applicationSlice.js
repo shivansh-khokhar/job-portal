@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const applicationSlice = createSlice({
     name: "application",
     initialState: {
-        applicants: []
+        applicants: null,
     },
     reducers: {
         setAllApplicants: (state, action)=>{
@@ -12,4 +12,4 @@ const applicationSlice = createSlice({
     }
 });
 export const {setAllApplicants} = applicationSlice.actions;
-export default applicationSlice;
+export default applicationSlice.reducer;

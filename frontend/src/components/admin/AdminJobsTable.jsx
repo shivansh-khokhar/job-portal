@@ -21,7 +21,7 @@ const AdminJobsTable = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("called");
+    // console.log("called");
     const filteredJobs = allAdminJobs.filter((job) => {
       if (!searchJobByText) {
         return true;
@@ -47,7 +47,7 @@ const AdminJobsTable = () => {
         </TableHeader>
         <TableBody>
           {filterJobs?.map((job) => (
-            <tr>
+            <tr key={job._id}>
               <TableCell>{job?.company?.name}</TableCell>
               <TableCell>{job?.title}</TableCell>
               <TableCell>{job?.createdAt.split("T")[0]}</TableCell>

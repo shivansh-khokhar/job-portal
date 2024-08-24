@@ -1,4 +1,4 @@
-import {React, useState} from "react";
+import { React, useState } from "react";
 import Navbar from "./shared/Navbar";
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { Contact, Mail, Pen } from "lucide-react";
@@ -8,12 +8,14 @@ import { Label } from "@radix-ui/react-label";
 import AppliedJobTable from "./AppliedJobTable";
 import UpdateProfileDialog from "./UpdateProfileDialog";
 import { useSelector } from "react-redux";
+import useGetAppliedJobs from "@/hooks/useGetAppliedJobs";
 
 const isHaveResume = true;
 
 const Profile = () => {
-    const [open, setOpen] = useState(false);
-    const {user} = useSelector(store=>store.auth);
+  useGetAppliedJobs();
+  const [open, setOpen] = useState(false);
+  const { user } = useSelector((store) => store.auth);
   return (
     <div>
       <Navbar />
@@ -28,7 +30,11 @@ const Profile = () => {
               <p>{user?.profile?.bio}</p>
             </div>
           </div>
-          <Button onClick={()=>setOpen(true)} className="text-right" varient="outline">
+          <Button
+            onClick={() => setOpen(true)}
+            className="text-right"
+            varient="outline"
+          >
             <Pen />
           </Button>
         </div>
@@ -43,27 +49,37 @@ const Profile = () => {
           </div>
         </div>
         <div className="my-5">
-            <h1>Skills</h1>
-            <div className="flex items-center gap-1">
-            {
-               user?.profile?.skills.length != 0 ? user?.profile?.skills.map((item , index) => <Badge key={index}>{item}</Badge>) : <span>NA</span>
-            }
-            </div>
+          <h1>Skills</h1>
+          <div className="flex items-center gap-1">
+            {user?.profile?.skills.length != 0 ? (
+              user?.profile?.skills.map((item, index) => (
+                <Badge key={index}>{item}</Badge>
+              ))
+            ) : (
+              <span>NA</span>
+            )}
+          </div>
         </div>
         <div className="grid w-full max-w-sm items-center gap-1.5">
-            <Label className="text-md font-bold">Resume</Label>
-            {
-                isHaveResume ? <a target="blank" href={user?.profile?.resume} className="text-blue-500 w-full hover:underline cursor-pointer">{user?.profile?.resumeOriginalName}</a> : <span>NA</span>
-            }
-
+          <Label className="text-md font-bold">Resume</Label>
+          {isHaveResume ? (
+            <a
+              target="blank"
+              href={user?.profile?.resume}
+              className="text-blue-500 w-full hover:underline cursor-pointer"
+            >
+              {user?.profile?.resumeOriginalName}
+            </a>
+          ) : (
+            <span>NA</span>
+          )}
         </div>
       </div>
-        <div className="max-w-4xl mx-auto bg-white rounded-2xl">
-          <h1 className="font-bold text-lg my-5">Applied Jobs</h1>
-          <AppliedJobTable/>
-
-        </div>
-        <UpdateProfileDialog open={open} setOpen={setOpen}/>
+      <div className="max-w-4xl mx-auto bg-white rounded-2xl">
+        <h1 className="font-bold text-lg my-5">Applied Jobs</h1>
+        <AppliedJobTable />
+      </div>
+      <UpdateProfileDialog open={open} setOpen={setOpen} />
     </div>
   );
 };
