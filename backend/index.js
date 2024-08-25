@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 const corsOption = {
-    origin:clientUrl,
+    origin:`${clientUrl}`,
     credentials:true
 }
 app.use(cors(corsOption));
