@@ -11,23 +11,27 @@ import jobRoute from "./routes/job.route.js";
 dotenv.config({});
 
 const app = express();
-app.get("/home",(req,res)=>{
-    res.status(200).json({
-        message:"i am comming from backend",
-        success:true
-    })
-})
+app.get("/home", (req, res) => {
+  res.status(200).json({
+    message: "i am comming from backend",
+    success: true,
+  });
+});
 
 // middlewares
 const clientUrl = process.env.CLIENT_URL;
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 const corsOption = {
-    origin:`${clientUrl}`,
-    credentials:true
-}
+  origin: `${clientUrl}`,
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  optionsSuccessStatus: 200, // Some legacy browsers choke on 204
+};
 app.use(cors(corsOption));
+// Handle preflight requests
+app.options('*', cors(corsOption));
 
 //APIs
 app.use("/api/v1/user", userRoute);
@@ -36,7 +40,7 @@ app.use("/api/v1/application", applicationRoute);
 app.use("/api/v1/job", jobRoute);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, (req,res)=>{
-    connectDB();
- console.log(`running on port ${PORT}`)
-})
+app.listen(PORT, (req, res) => {
+  connectDB();
+  console.log(`running on port ${PORT}`);
+});
