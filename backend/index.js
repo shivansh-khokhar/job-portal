@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 const corsOption = {
-  origin: `${clientUrl}`,
+  origin: `https://job-portal-awej.vercel.app`,
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   optionsSuccessStatus: 200, // Some legacy browsers choke on 204
